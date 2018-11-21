@@ -1,0 +1,25 @@
+{
+  "manifest_version": "2",
+  "api_version": "1",
+  "name": "vscode-projects",
+  "description": "Integrates with VSCode Git Projects extension allowing you to open your projects from anywhere using Ulauncher",
+  "developer_name": "Bruno Paz",
+  "icon": "images/icon.png",
+  "options": {
+    "query_debounce": 0.1
+  },
+  "preferences": [{
+      "id": "kw",
+      "type": "keyword",
+      "name": "VSCode Projects",
+      "default_value": "projects"
+    },
+    {
+      "id": "projects_file_path",
+      "type": "input",
+      "name": "Projects File path",
+      "description": "Thr location of of projects file cache created by Project Manager VSCode Extension",
+      "default_value": "~/.config/Code/User/projects_cache_git.json"
+    }
+  ]
+}
