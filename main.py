@@ -54,9 +54,9 @@ class KeywordQueryEventListener(EventListener):
         for project in projects[:8]:
             items.append(ExtensionResultItem(icon='images/icon.png',
                                              name=project['name'],
-                                             description=project['fullPath'],
+                                             description=project['rootPath'],
                                              on_enter=ExtensionCustomAction(project),
-                                             on_alt_enter=OpenAction(project['fullPath'])))
+                                             on_alt_enter=OpenAction(project['rootPath'])))
 
         return RenderResultListAction(items)
 
@@ -68,7 +68,7 @@ class ItemEnterEventListener(EventListener):
         """ Event handler """
         data = event.get_data()
 
-        subprocess.call(["code", data['fullPath']])
+        subprocess.call(["code", data['rootPath']])
 
 if __name__ == '__main__':
     VSCodeProjectsExtension().run()
