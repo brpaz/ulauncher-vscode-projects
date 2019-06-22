@@ -17,6 +17,7 @@ from ulauncher.api.shared.action.HideWindowAction import HideWindowAction
 
 LOGGING = logging.getLogger(__name__)
 
+
 class VSCodeProjectsExtension(Extension):
     """ Main Extension Class  """
 
@@ -36,27 +37,28 @@ class KeywordQueryEventListener(EventListener):
         items = []
 
         if not os.path.exists(os.path.expanduser(extension.preferences['projects_file_path'])):
-              return RenderResultListAction([
-                  ExtensionResultItem(icon='images/icon.png',
-                                             name='Projects file not found',
-                                             description='Please make sure you have the Project Manager VSCode extension properly installed',
-                                             on_enter=HideWindowAction())
-              ])
-
+            return RenderResultListAction([
+                ExtensionResultItem(icon='images/icon.png',
+                                    name='Projects file not found',
+                                    description='Please make sure you have the Project Manager VSCode extension properly installed',
+                                    on_enter=HideWindowAction())
+            ])
 
         with open(os.path.expanduser(extension.preferences['projects_file_path'])) as f:
             projects = json.load(f)
-        
+
         query = event.get_argument()
         if query:
-            projects =  [x for x in projects if query.strip().lower() in x['name'].lower()]
+            projects = [x for x in projects if query.strip().lower()
+                        in x['name'].lower()]
 
         for project in projects[:8]:
             items.append(ExtensionResultItem(icon='images/icon.png',
                                              name=project['name'],
-                                             description=project['rootPath'],
-                                             on_enter=ExtensionCustomAction(project),
-                                             on_alt_enter=OpenAction(project['rootPath'])))
+                                             description=project['fullPath'],
+                                             on_enter=ExtensionCustomAction(
+                                                 project),
+                                             on_alt_enter=OpenAction(project['fullPath'])))
 
         return RenderResultListAction(items)
 
@@ -68,7 +70,8 @@ class ItemEnterEventListener(EventListener):
         """ Event handler """
         data = event.get_data()
 
-        subprocess.call(["code", data['rootPath']])
+        subprocess.call(["code", data['fullPath']])
+
 
 if __name__ == '__main__':
     VSCodeProjectsExtension().run()

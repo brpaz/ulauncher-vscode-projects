@@ -8,7 +8,8 @@
   "options": {
     "query_debounce": 0.1
   },
-  "preferences": [{
+  "preferences": [
+    {
       "id": "kw",
       "type": "keyword",
       "name": "VSCode Projects",
@@ -19,7 +20,7 @@
       "type": "input",
       "name": "Projects File path",
       "description": "Thr location of of projects file cache created by Project Manager VSCode Extension",
-      "default_value": "~/.config/Code/User/projects_cache_git.json"
+      "default_value": "~/.config/Code/User/globalStorage/alefragnani.project-manager/projects_cache_git.json"
     }
   ]
 }
