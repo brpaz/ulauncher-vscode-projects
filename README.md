@@ -1,8 +1,8 @@
 # Ulauncher VS Code Git Projects
 
-[![Ulauncher Extension](https://img.shields.io/badge/Ulauncher-Extension-green.svg?style=for-the-badge)](https://ext.ulauncher.io/-/github-brpaz-ulauncher-ulauncher-vscode-projects)
-[![CircleCI](https://img.shields.io/circleci/build/github/brpaz/ulauncher-ulauncher-vscode-projects.svg?style=for-the-badge)](https://circleci.com/gh/brpaz/ulauncher-ulauncher-vscode-projects)
-![License](https://img.shields.io/github/license/brpaz/ulauncher-ulauncher-vscode-projects.svg?style=for-the-badge)
+[![Ulauncher Extension](https://img.shields.io/badge/Ulauncher-Extension-green.svg?style=for-the-badge)](https://ext.ulauncher.io/-/github-brpaz-ulauncher-vscode-projects)
+[![CircleCI](https://img.shields.io/circleci/build/github/brpaz/ulauncher-vscode-projects.svg?style=for-the-badge)](https://circleci.com/gh/brpaz/ulauncher-vscode-projects)
+![License](https://img.shields.io/github/license/brpaz/ulauncher-vscode-projects.svg?style=for-the-badge)
 
 > [Ulauncher](https://ulauncher.io) extension that allows you to open projects managed by [VSCode Project Manager](https://github.com/alefragnani/vscode-project-manager) Extension.
 
