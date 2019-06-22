@@ -21,6 +21,13 @@
       "name": "Projects File path",
       "description": "Thr location of of projects file cache created by Project Manager VSCode Extension",
       "default_value": "~/.config/Code/User/globalStorage/alefragnani.project-manager/projects_cache_git.json"
+    },
+    {
+      "id": "code_executable_path",
+      "type": "input",
+      "name": "VS Code executable path",
+      "description": "The path to the VS Code executable",
+      "default_value": "code"
     }
   ]
 }

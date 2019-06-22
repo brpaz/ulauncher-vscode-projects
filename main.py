@@ -70,7 +70,8 @@ class ItemEnterEventListener(EventListener):
         """ Event handler """
         data = event.get_data()
 
-        subprocess.call(["code", data['fullPath']])
+        code_executable = extension.preferences['code_executable_path']
+        subprocess.call([code_executable, data['fullPath']])
 
 
 if __name__ == '__main__':
