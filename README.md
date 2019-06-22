@@ -21,7 +21,7 @@
 Open ulauncher preferences window -> extensions -> add extension and paste the following url:
 
 ```
-https://github.com/brpaz/vscode-projects
+https://github.com/brpaz/ulauncher-vscode-projects
 ```
 
 ## Usage
