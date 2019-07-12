@@ -63,10 +63,10 @@ class KeywordQueryEventListener(EventListener):
             items.append(
                 ExtensionResultItem(icon='images/icon.png',
                                     name=project['name'],
-                                    description=project['fullPath'],
+                                    description=project.get('fullPath') or project.get('rootPath'),
                                     on_enter=ExtensionCustomAction(project),
                                     on_alt_enter=OpenAction(
-                                        project['fullPath'])))
+                                        project.get('fullPath') or project.get('rootPath'))))
 
         return RenderResultListAction(items)
 
@@ -79,7 +79,7 @@ class ItemEnterEventListener(EventListener):
         data = event.get_data()
 
         code_executable = extension.preferences['code_executable_path']
-        subprocess.call([code_executable, data['fullPath']])
+        subprocess.call([code_executable, data.get('fullPath') or data.get('rootPath')])
 
 
 if __name__ == '__main__':
