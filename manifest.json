@@ -20,7 +20,7 @@
       "type": "input",
       "name": "Projects File path",
       "description": "The location of of projects file cache created by Project Manager VSCode Extension",
-      "default_value": "~/.config/Code/User/globalStorage/alefragnani.project-manager/projects_cache_git.json"
+      "default_value": "~/.config/Code/User/globalStorage/alefragnani.project-manager/"
     },
     {
       "id": "code_executable_path",
