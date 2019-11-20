@@ -36,9 +36,9 @@ class KeywordQueryEventListener(EventListener):
         """ Handles the event """
         items = []
 
-        if not os.path.exists(
-                os.path.expanduser(
-                    extension.preferences['projects_file_path'])):
+        full_project_path = os.path.expanduser(extension.preferences['projects_file_path'])
+
+        if not os.path.exists(full_project_path):
             return RenderResultListAction([
                 ExtensionResultItem(
                     icon='images/icon.png',
@@ -47,10 +47,16 @@ class KeywordQueryEventListener(EventListener):
                     on_enter=HideWindowAction())
             ])
 
-        with open(
-                os.path.expanduser(
-                    extension.preferences['projects_file_path'])) as projects_file:
-            projects = json.load(projects_file)
+        if os.path.isfile(full_project_path):
+            with open(full_project_path) as projects_file:
+                projects = json.load(projects_file)
+        else:
+            project_files = os.listdir(full_project_path)
+            projects = []
+            for projects_file in project_files:
+                projects_file = os.path.join(full_project_path, projects_file)
+                with open(projects_file) as file:
+                    projects += json.load(file)
 
         query = event.get_argument()
         if query:
