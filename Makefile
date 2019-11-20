@@ -15,10 +15,10 @@ format: ## Format code using yapf
 	@yapf --in-place --recursive .
 
 link: ## Symlink the project source directory with Ulauncher extensions dir.
-	@ln -s ${EXT_DIR} ~/.cache/ulauncher_cache/extensions/${EXT_NAME}
+	@ln -s ${EXT_DIR} ~/.local/share/ulauncher/extensions/${EXT_NAME}
 
 unlink: ## Unlink extension from Ulauncher
-	@rm -r ~/.cache/ulauncher_cache/extensions/${EXT_NAME}
+	@rm -r ~/.local/share/ulauncher/extensions/${EXT_NAME}
 
 deps: ## Install Python Dependencies
 	@pip3 install -r requirements.txt
