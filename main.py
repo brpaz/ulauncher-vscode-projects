@@ -4,6 +4,7 @@ import json
 import logging
 import os
 import subprocess
+import glob
 
 # pylint: disable=import-error
 from ulauncher.api.client.Extension import Extension
@@ -17,6 +18,26 @@ from ulauncher.api.shared.action.HideWindowAction import HideWindowAction
 
 LOGGING = logging.getLogger(__name__)
 
+def readWorkspaces():
+    absPath = os.path.expanduser('~/.config/Code/User/workspaceStorage/')
+    fileList = glob.glob(absPath + "*/workspace.json")
+    dirList = []
+    for workspacePath in fileList:
+        f = open(workspacePath, 'r')
+        data = json.load(f)
+        f.close()
+        pointer = data['folder'].find('file://')
+        if(pointer >= 0):
+            path = data['folder'][7:]
+            # get workspace name
+            namePointer = path.rfind('/')
+            name = path[namePointer + 1:]
+            currentData = {
+                'name' : name,
+                'path' : path
+            }
+            dirList.append(currentData)
+    return dirList
 
 class VSCodeProjectsExtension(Extension):
     """ Main Extension Class  """
@@ -39,6 +60,18 @@ class KeywordQueryEventListener(EventListener):
         full_project_path = os.path.expanduser(extension.preferences['projects_file_path'])
 
         if not os.path.exists(full_project_path):
+            workspaceDir = readWorkspaces()
+            if len(workspaceDir) > 0:
+                for item in workspaceDir[:8]:
+                    print(item)
+                    items.append(
+                    ExtensionResultItem(icon='images/icon.png',
+                                        name=item['name'],
+                                        description=item['path'],
+                                        on_enter=ExtensionCustomAction(item),
+                                        on_alt_enter=OpenAction(item['path'])))
+
+                return RenderResultListAction(items)
             return RenderResultListAction([
                 ExtensionResultItem(
                     icon='images/icon.png',
@@ -85,8 +118,9 @@ class ItemEnterEventListener(EventListener):
         data = event.get_data()
 
         code_executable = extension.preferences['code_executable_path']
-        subprocess.call([code_executable, data.get('fullPath') or data.get('rootPath')])
+        subprocess.call([code_executable, data.get('fullPath') or data.get('rootPath') or data.get("path")])
 
 
 if __name__ == '__main__':
     VSCodeProjectsExtension().run()
+    
