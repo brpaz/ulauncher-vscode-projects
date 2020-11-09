@@ -58,12 +58,16 @@ class KeywordQueryEventListener(EventListener):
         items = []
 
         full_project_path = os.path.expanduser(extension.preferences['projects_file_path'])
-
+        query = event.get_argument()
         if not os.path.exists(full_project_path):
             workspaceDir = readWorkspaces()
+            if query:
+                workspaceDir = [
+                    x for x in workspaceDir
+                    if query.strip().lower() in x['name'].lower()
+                ]
             if len(workspaceDir) > 0:
                 for item in workspaceDir[:8]:
-                    print(item)
                     items.append(
                     ExtensionResultItem(icon='images/icon.png',
                                         name=item['name'],
@@ -91,7 +95,6 @@ class KeywordQueryEventListener(EventListener):
                 with open(projects_file) as file:
                     projects += json.load(file)
 
-        query = event.get_argument()
         if query:
             projects = [
                 x for x in projects
