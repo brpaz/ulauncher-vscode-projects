@@ -60,6 +60,7 @@ class VSCodeProjectsExtension(Extension):
         projects_index = []
 
         if self.preferences['include_project_manager'] == 'true':
+            projects = []
             full_project_path = os.path.expanduser(
                 self.preferences['projects_file_path'])
 
@@ -89,7 +90,6 @@ class VSCodeProjectsExtension(Extension):
         if self.preferences['include_recent_workspaces'] == 'true':
             recent_workspaces = self.read_workspaces()
             for w in recent_workspaces:
-
                 if w['name'] not in projects_index:
                     mappedProjects.append({
                         'name': w['name'],
@@ -150,7 +150,7 @@ class ItemEnterEventListener(EventListener):
         data = event.get_data()
 
         code_executable = extension.preferences['code_executable_path']
-        subprocess.call([code_executable, data['path']], shell=True)
+        subprocess.run([code_executable, data['path']])
 
 
 if __name__ == '__main__':
