@@ -1,0 +1,12 @@
+- repo: local
+  hooks:
+    - id: yapf
+      name: yapf
+      entry: make format
+      language: system
+      types: [python]
+    - id: lint
+      name: flake8
+      entry: make lint
+      language: system
+      types: [python]
