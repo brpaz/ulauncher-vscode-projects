@@ -150,7 +150,10 @@ class ItemEnterEventListener(EventListener):
         data = event.get_data()
 
         code_executable = extension.preferences['code_executable_path']
-        subprocess.run([code_executable, data['path']])
+        if not data['path'].startswith('vscode-remote://'):
+            subprocess.run([code_executable, data['path']])
+        else:
+            subprocess.run([code_executable, '--folder-uri', data['path']])
 
 
 if __name__ == '__main__':
