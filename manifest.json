@@ -16,6 +16,13 @@
       "default_value": "vsp"
     },
     {
+      "id": "config_path",
+      "type": "input",
+      "name": "Config path",
+      "description": "The path to VSCode's config folder (e.g., update if you are using Code - OSS)",
+      "default_value": "~/.config/Code/"
+    },
+    {
       "id": "projects_file_path",
       "type": "input",
       "name": "Projects File path",

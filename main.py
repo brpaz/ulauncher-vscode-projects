@@ -29,8 +29,8 @@ class VSCodeProjectsExtension(Extension):
 
     def read_workspaces(self):
         """ Reads VS Code recent workspaces """
-        absPath = os.path.expanduser('~/.config/Code/User/workspaceStorage/')
-        fileList = glob.glob(absPath + "*/workspace.json")
+        absPath = os.path.expanduser(self.preferences['config_path'])
+        fileList = glob.glob(absPath + "/User/workspaceStorage/*/workspace.json")
         dirList = []
         for workspacePath in fileList:
             f = open(workspacePath, 'r')
