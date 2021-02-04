@@ -5,6 +5,7 @@ import logging
 import os
 import subprocess
 import glob
+import datetime
 
 from ulauncher.api.client.Extension import Extension
 from ulauncher.api.client.EventListener import EventListener
@@ -96,6 +97,15 @@ class VSCodeProjectsExtension(Extension):
                         'path': w['path'],
                         'type': 'workspace'
                     })
+
+        # get project's time of most recent content modification
+        for p in mappedProjects:
+            if os.path.exists(p['path']):
+                p['mtime'] = datetime.datetime.fromtimestamp(os.stat(p['path']).st_mtime)
+            else:
+                p['mtime'] = datetime.datetime.min
+
+        mappedProjects.sort(reverse=True, key=lambda p: p['mtime'])
 
         return mappedProjects
 
