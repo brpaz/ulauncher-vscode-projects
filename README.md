@@ -1,11 +1,12 @@
 
 # Ulauncher VSCode Projects Extension
 
+> [Ulauncher](https://ulauncher.io) extension that allows you to quickly open your VSCode projects, either managed by [VSCode Project Manager] (https://github.com/alefragnani/vscode-project-manager) extension or from VSCode [Recent workspaces](https://code.visualstudio.com/docs/editor/workspaces).
+
 [![Ulauncher Extension](https://img.shields.io/badge/Ulauncher-Extension-green.svg?style=for-the-badge)](https://ext.ulauncher.io/-/github-brpaz-ulauncher-vscode-projects)
-[![CircleCI](https://img.shields.io/circleci/build/github/brpaz/ulauncher-vscode-projects.svg?style=for-the-badge)](https://circleci.com/gh/brpaz/ulauncher-vscode-projects)
+[![CI Status](https://img.shields.io/github/workflow/status/brpaz/ulauncher-vscode-projects/CI?color=orange&label=actions&logo=github&logoColor=orange&style=for-the-badge)](https://github.com/brpaz/ulauncher-vscode-projects/workflows)
 ![License](https://img.shields.io/github/license/brpaz/ulauncher-vscode-projects.svg?style=for-the-badge)
 
-> [Ulauncher](https://ulauncher.io) extension that allows you to quickly open your VSCode projects, either managed by [VSCode Project Manager](https://github.com/alefragnani/vscode-project-manager) or directly from VSCode "Recent workspaces".
 
 ## Demo
 
@@ -16,14 +17,14 @@
 - Ulauncher 5
 - Python 3
 - Visual Studio Code
-- [Project Manager](https://github.com/alefragnani/vscode-project-manager) extension. If not installed, you can still use this extension but will fall back to "Recent workspaces".
+- [Project Manager](https://github.com/alefragnani/vscode-project-manager) extension, if you want to use it. otherwise you can configure the extension to look only to the VSCode workspaces.
 
 ## Install
 
 You must install the following Python packages required by this extension. You can run the following command in the terminal:
 
 ```sh
-pip install --user memoization==0.3.1
+pip install --user memoization==0.4.0
 ```
 
 In some Operating systems, you might have to run `pip3` instead of `pip`
@@ -40,7 +41,19 @@ Type `vsp` into ulauncher input, to trigger this extension. You can optionally k
 
 [Project Manager](https://github.com/alefragnani/vscode-project-manager) managed projects will appear with the "briefcase" icon, while "Recent workspaces" will have a dark VSCode icon.
 
-If you want to only see projects from one of these sources, you can configure it in the Plugin settings.
+If you want to only see projects from one of these sources, you can configure it in the extension settings.
+
+### Extension Settings
+
+| Name                             	| Description                                                                                                   	| Default value                                                   	|
+|----------------------------------	|---------------------------------------------------------------------------------------------------------------	|-----------------------------------------------------------------	|
+| Config path                      	| The path to VSCode's config folder. You can change this value if to point to your Codium install for example. 	| ~/.config/Code/                                                 	|
+| Projects File path               	| The location of of projects file cache created by Project Manager VSCode Extension                            	| "~/.config/Code/User/globalStorage/alefragnani.project-manager/ 	|
+| VS Code executable path          	| The path to the VSCode executable. You might want to change is if using Codium or VSCode from Flatpa          	| code                                                            	|
+| Include recent workspaces        	| "When to include recent workspaces                                                                            	| true                                                            	|
+| Include project manager projects 	| Include projects from the Project Manager extension                                                           	| true                                                            	|
+
+
 
 ## Development
 

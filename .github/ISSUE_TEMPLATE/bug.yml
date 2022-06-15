@@ -1,0 +1,34 @@
+name: Bug
+description: Report a bug
+title: "[Bug]: "
+labels: ["bug"]
+assignees:
+  - brpaz
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Most issues regarding Ulauncher extensions are caused by missing Python dependencies that are required for the extension to work.
+
+        If you get a `Type: KeyError` error when saving the extension preferences for example, a missing dependency is mostly the cause.
+
+        Please make sure to check the project `README` for a list of Python extensions to install.
+
+        Also Check [this](https://ulauncher-extension-doesnt-install-and-now.netlify.app/) website for more details.
+  - type: textarea
+    id: description
+    attributes:
+      label: Description?
+      description: Please explain in detail the issue and the steps to reproduce it.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Extension Logs
+      description: |
+        Please copy and paste the extension logs. The best way to get them:
+        - Close any Ulauncher instance that you have running (full close, not minimize)
+        - From the command line run: `ulauncher -v --dev |& grep "<extension-name>"`, replacing <extension_name> with the name of the extension. (Ex: ulauncher-github)
+        - Execute the action that is giving error and get the log output.
+      render: shell

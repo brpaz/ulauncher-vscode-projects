@@ -1,0 +1,13 @@
+# Dependabot configuration
+# see: https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/configuration-options-for-dependency-updates#configuration-options-for-dependabotyml
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    assignees:
+      - "@brpaz"
+    labels:
+      - "dependencies"
+    open-pull-requests-limit: 3
