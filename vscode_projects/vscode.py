@@ -1,6 +1,7 @@
 import os
 import json
 import glob
+import datetime
 from memoization import cached
 from typing import List
 
@@ -85,9 +86,12 @@ class Client(object):
                 currentData = {'name': name, 'path': path}
 
                 # make sure to include only folders that still exist
-                if os.path.isdir(path):
+                if os.path.isdir(path) and path != "/tmp":
+                    currentData['mtime'] = datetime.datetime.fromtimestamp(
+                        os.stat(path).st_mtime)
                     recent_workspaces.append(currentData)
 
+        recent_workspaces.sort(reverse=True, key=lambda p: p['mtime'])
         projects = []
         for w in recent_workspaces:
             if w['name'] in exclude_list:
